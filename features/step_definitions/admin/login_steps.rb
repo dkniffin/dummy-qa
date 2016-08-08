@@ -3,12 +3,11 @@ Given(/^I have an admin account$/) do
 end
 
 Given(/^I am at the admin log in page$/) do
-  url = get_log_in_url(:admin)
-  go_to_url_and_verify(url)
+  visit '/admin/login' # TODO: correct login path
 end
 
 When(/^I log in as an admin$/) do
- log_in_with_credentials(@admin_info)
+  log_in_with_credentials(@admin_info)
 end
 
 Then(/^I am in the admin panel$/) do

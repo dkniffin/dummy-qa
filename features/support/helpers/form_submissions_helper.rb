@@ -2,7 +2,7 @@
 # TODO: Fill in proper form components
 
 module FormSubmissionHelpers
-  def pick_a_name
+  def pick_a_name # TODO
     fill_in "", with: ""
     fill_in "", with: ""
     fill_in "", with: ""

@@ -1,4 +1,5 @@
 # TODO: Fill in notification preferences
+# TODO: Insert instructions (TBD)
 
 language: ruby
 cache: bundler
@@ -15,4 +16,4 @@ script:
 notifications:
   email:
     - insert_email
-  slack: smashingboxes:some_number
+  slack: smashingboxes:some_number # TODO

@@ -3,8 +3,7 @@ Given(/^I have a user account$/) do
 end
 
 Given(/^I am at the user log in screen$/) do
-  url = get_log_in_url(:user)
-  go_to_url_and_verify(url)
+  visit '/user/login' # TODO: correct login path
 end
 
 When(/^I log in as a user$/) do
