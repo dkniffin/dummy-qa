@@ -34,6 +34,7 @@ When writing your first test, please adhere to the folder structure below for co
       - user
     - support
       - helpers
+      - test_files
 
 NOTE: The `page_interactions` folder has both `clicking.rb` and `viewing.rb` files for general steps that will be reused throughout your tests.
 
