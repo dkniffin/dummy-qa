@@ -1,10 +1,14 @@
 # Cucumber - QA Automation Template
 
-This repo provides an example setup for Cucumber and QA Automation. You can also go view all of this content here {insert URL to SB wiki article}. Please clone this repo to begin your automation setup process.
+This repo provides an example setup for Cucumber and QA Automation. You can also go view all of this content here {insert URL to SB wiki article}. Please follow the steps below for the setup process:
 
-1. Clone the repo
-1. Open the project in editor of choice
+1. `git clone <template-repo-url> project-name`
 1. `bundle install`
+1. Create new repo in GitHub interface - name it `project-name-qa-automation`
+1. Select `Private`
+1. Select `Initialize this repository with a README`
+1. Select `Ruby` for `.gitignore`
+1. Open the project in editor of choice
 1. Search for “TODO” - in console type - `grep -r TODO .`
 1. Fill in content for TODO sections
 1. Change repos origin - `git remote set-url origin <github url>`
@@ -12,7 +16,7 @@ This repo provides an example setup for Cucumber and QA Automation. You can also
 
 ## Editor Setup
 
-Below are a few add-ons for Atom that will be beneficial when writing your tests:
+Below are a few add-ons for Atom (if you prefer Atom) that will be beneficial when writing your tests:
 
 - <a href="https://atom.io/packages/atom-beautify">Atom-Beautify</a>
 - <a href="https://atom.io/packages/auto-detect-indentation">Auto-Detect-Indentation</a>
