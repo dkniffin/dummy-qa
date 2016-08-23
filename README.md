@@ -13,6 +13,7 @@ This repo provides an example setup for Cucumber and QA Automation. You can also
 1. Fill in content for TODO sections
 1. Change repos origin - `git remote set-url origin <github url>`
 1. `Git push`
+1. Blah
 1. Open your first PR - _please see guide below_
 
 With setup now complete, you are ready to begin writing tests once the PR has gone through the standard SB Review process. Wait for the green check on the merge and simply copy the URL and in the `code-reviews` Slack channel, type `/cr https://github.com/smashingboxes/project-name/pull/1`
