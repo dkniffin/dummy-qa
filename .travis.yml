@@ -1,18 +1,15 @@
-# TODO: Fill in notification preferences
-# TODO: Insert instructions (TBD)
-
 language: ruby
 cache: bundler
 
+# TODO: Fill in the correct BEFORE_SCRIPT_URL
 before_script:
-  - bundle install
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+  - bash <(curl -s BEFORE_SCRIPT_URL)
 
+# TODO: Fill in the correct TEST_SCRIPT_URL
 script:
-  - bundle exec cucumber
+  - bash <(curl -s TEST_SCRIPT_URL)
 
+# TODO: Fill in notification preferences
 notifications:
   email:
     - insert_email
