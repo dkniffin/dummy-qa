@@ -17,6 +17,31 @@ This repo provides an example setup for Cucumber and QA Automation. You can also
 
 With setup now complete, you are ready to begin writing tests once the PR has gone through the standard SB Review process. Wait for the green check on the merge and simply copy the URL and in the `code-reviews` Slack channel, type `/cr https://github.com/smashingboxes/project-name/pull/1`
 
+## Integrating with backend and frontend
+
+At Smashing Boxes, we develop our web apps using a "hybrid" or decoupled approach. What this means is that the backends and frontends of our apps are built separately, in different repos. Because of this, running Cucumber tests is a little more involved.
+
+In order to do proper TDD, we'll want to run our Cucumber when different things happen:
+- When a new backend PR is opened
+- When a new frontend PR is opened
+- When a new QA PR is opened
+
+To accomplish this, we'll need to configure our build system to pull down the backend and frontend, and run them locally.
+
+### Setting up CI for the app
+
+In both the backend and frontend, add the following to `.travis.yml`
+````
+before:
+  - bash <(curl -s BEFORE_SCRIPT_URL)
+
+script:
+  # ...
+  # Put the Cucumber test last, because it will cd into different directories
+  - bash <(curl -s TEST_SCRIPT_URL)
+````
+Be sure to fill in the `BEFORE_SCRIPT_URL` and `TEST_SCRIPT_URL` with links to the raw file on github, such as `https://raw.githubusercontent.com/smashingboxes/cucumber-template/master/bin/test.sh?token=ABmi0AM58zIPAViTZnHB-IwCyfvscNmlks5XsjiTwA%3D%3D`
+
 ## PR Guide
 
 Example:
@@ -72,3 +97,4 @@ TBD
 ## Sauce Labs Integration
 
 TBD
+
