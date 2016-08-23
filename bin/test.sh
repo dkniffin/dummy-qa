@@ -1,2 +1,2 @@
 cd $QA_PATH
-bundle exec cucumber
+APP_ENV=DEV bundle exec cucumber

@@ -3,9 +3,9 @@
 REPO_URL_PREFIX="http://github.com/"
 REPO_URL_SUFFIX=".git"
 
-BACKEND_REPO_SLUG="smashingboxes/FILLTHISIN" # TODO: Fill this in
-FRONTEND_REPO_SLUG="smashingboxes/FILLTHISIN" # TODO: Fill this in
-QA_REPO_SLUG="smashingboxes/FILLTHISIN" # TODO: Fill this in
+BACKEND_REPO_SLUG="dkniffin/dummy-backend"
+FRONTEND_REPO_SLUG="dkniffin/dummy-frontend"
+QA_REPO_SLUG="dkniffin/dummy-qa"
 
 BACKEND_REPO_URL=$REPO_URL_PREFIX$BACKEND_REPO_SLUG$REPO_URL_SUFFIX
 FRONTEND_REPO_URL=$REPO_URL_PREFIX$FRONTEND_REPO_SLUG$REPO_URL_SUFFIXB
@@ -13,6 +13,7 @@ QA_REPO_URL=$REPO_URL_PREFIX$QA_REPO_SLUG$REPO_URL_SUFFIX
 
 ###########################################################
 # Backend
+
 cd ..
 if [ $TRAVIS_REPO_SLUG != $BACKEND_REPO_SLUG ]; then
   cd $TRAVIS_BUILD_DIR
@@ -21,23 +22,25 @@ else
   cd ~/backend
 fi
 bundle install
-# TODO: Add any other backend instructions here
 rails s &
 
 ###########################################################
 # Frontend
+
+# TEMPLATE_TODO: Pair with a frontender to create a basic hello world app to test this.
 if [ $TRAVIS_REPO_SLUG != $FRONTEND_REPO_SLUG ]; then
   cd $TRAVIS_BUILD_DIR
 else
   git clone $FRONTEND_REPO_URL ~/frontend
   cd ~/frontend
 fi
-npm install
+# npm install
 # TODO: Add any other frontend instructions here
-npm start &
+# npm start &
 
 ###########################################################
 # QA
+
 cd ..
 if [ $TRAVIS_REPO_SLUG == $QA_REPO_SLUG ]; then
   export QA_PATH=$TRAVIS_BUILD_DIR

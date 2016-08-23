@@ -3,7 +3,7 @@ Given(/^I have a user account$/) do
 end
 
 Given(/^I am at the user log in screen$/) do
-  visit '/user/login' # TODO: correct login path
+  visit '/user/login'
 end
 
 When(/^I log in as a user$/) do

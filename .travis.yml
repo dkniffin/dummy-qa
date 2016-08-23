@@ -1,16 +1,8 @@
 language: ruby
 cache: bundler
 
-# TODO: Fill in the correct BEFORE_SCRIPT_URL
 before_script:
-  - bash <(curl -s BEFORE_SCRIPT_URL)
+  - bash <(curl -s https://raw.githubusercontent.com/dkniffin/dummy-qa/master/bin/before-test.sh)
 
-# TODO: Fill in the correct TEST_SCRIPT_URL
 script:
-  - bash <(curl -s TEST_SCRIPT_URL)
-
-# TODO: Fill in notification preferences
-notifications:
-  email:
-    - insert_email
-  slack: smashingboxes:some_number # TODO
+  - bash <(curl -s https://raw.githubusercontent.com/dkniffin/dummy-qa/master/bin/test.sh)

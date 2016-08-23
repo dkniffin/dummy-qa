@@ -3,7 +3,7 @@ Given(/^I have an admin account$/) do
 end
 
 Given(/^I am at the admin log in page$/) do
-  visit '/admin/login' # TODO: correct login path
+  visit '/admin/login'
 end
 
 When(/^I log in as an admin$/) do

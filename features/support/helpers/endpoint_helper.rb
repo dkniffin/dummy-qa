@@ -1,7 +1,3 @@
-# TODO: Fill in else section for self.host_base
-# TODO: Edit local URLs if needed
-# TODO: Remove comments
-
 module EndpointHelper
   def self.host_base
     hostname = case ENV['APP_HOST']
@@ -9,7 +5,7 @@ module EndpointHelper
                  'http://localhost'
                else
                  # else handles the "QA" situation so it's the default
-                 'http://' # TODO: fill in QA IP/URL
+                 'http://'
                end
 
     hostname
@@ -18,7 +14,7 @@ module EndpointHelper
   def self.app_base
     hostname = case ENV['APP_HOST']
                when 'DEV'
-                 "#{host_base}:8080" # TODO: fill in correct port
+                 "#{host_base}:8080"
                else
                  host_base
                end
