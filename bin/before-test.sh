@@ -34,9 +34,9 @@ else
   git clone $FRONTEND_REPO_URL ~/frontend
   cd ~/frontend
 fi
-# npm install
 # TODO: Add any other frontend instructions here
-# npm start &
+npm install
+npm start &
 
 ###########################################################
 # QA
