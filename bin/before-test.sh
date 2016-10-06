@@ -28,6 +28,7 @@ bundle exec rails s &
 # Frontend
 
 # TEMPLATE_TODO: Pair with a frontender to create a basic hello world app to test this.
+cd ..
 if [ $TRAVIS_REPO_SLUG != $FRONTEND_REPO_SLUG ]; then
   cd $TRAVIS_BUILD_DIR
 else
