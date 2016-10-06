@@ -14,8 +14,7 @@ QA_REPO_URL=$REPO_URL_PREFIX$QA_REPO_SLUG$REPO_URL_SUFFIX
 ###########################################################
 # Backend
 
-cd ..
-if [ $TRAVIS_REPO_SLUG != $BACKEND_REPO_SLUG ]; then
+if [[ $TRAVIS_REPO_SLUG == $BACKEND_REPO_SLUG ]]; then
   cd $TRAVIS_BUILD_DIR
 else
   git clone $BACKEND_REPO_URL ~/backend
@@ -28,8 +27,7 @@ bundle exec rails s &
 # Frontend
 
 # TEMPLATE_TODO: Pair with a frontender to create a basic hello world app to test this.
-cd ..
-if [ $TRAVIS_REPO_SLUG != $FRONTEND_REPO_SLUG ]; then
+if [[ $TRAVIS_REPO_SLUG == $FRONTEND_REPO_SLUG ]]; then
   cd $TRAVIS_BUILD_DIR
 else
   git clone $FRONTEND_REPO_URL ~/frontend
@@ -42,8 +40,7 @@ npm start &
 ###########################################################
 # QA
 
-cd ..
-if [ $TRAVIS_REPO_SLUG == $QA_REPO_SLUG ]; then
+if [[ $TRAVIS_REPO_SLUG == $QA_REPO_SLUG ]]; then
   export QA_PATH=$TRAVIS_BUILD_DIR
   cd $TRAVIS_BUILD_DIR
 else
