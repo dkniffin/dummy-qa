@@ -1,2 +1,3 @@
-cd $QA_PATH
-APP_ENV=DEV bundle exec cucumber
+set -x
+
+APP_ENV=DEV xvfb-run bundle exec cucumber

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 REPO_URL_PREFIX="http://github.com/"
 REPO_URL_SUFFIX=".git"
 
@@ -11,6 +13,9 @@ BACKEND_REPO_URL=$REPO_URL_PREFIX$BACKEND_REPO_SLUG$REPO_URL_SUFFIX
 FRONTEND_REPO_URL=$REPO_URL_PREFIX$FRONTEND_REPO_SLUG$REPO_URL_SUFFIXB
 QA_REPO_URL=$REPO_URL_PREFIX$QA_REPO_SLUG$REPO_URL_SUFFIX
 
+# Travis sets this, and it messes with bundler. We'll just unset it
+unset BUNDLE_GEMFILE
+
 ###########################################################
 # Backend
 
@@ -21,21 +26,29 @@ else
   cd ~/backend
 fi
 bundle install
-bundle exec rails s &
+cp config/secrets.example.yml config/secrets.yml
+cp config/database.example.yml config/database.yml
+psql -c 'create database dummy_backend_test;' -U postgres
+bundle exec rake db:migrate --trace
+bundle exec rake test:prepare --trace
+bundle exec bin/rails s > /dev/null 2>&1 &
 
 ###########################################################
 # Frontend
 
 # TEMPLATE_TODO: Pair with a frontender to create a basic hello world app to test this.
-if [[ $TRAVIS_REPO_SLUG == $FRONTEND_REPO_SLUG ]]; then
-  cd $TRAVIS_BUILD_DIR
-else
-  git clone $FRONTEND_REPO_URL ~/frontend
-  cd ~/frontend
-fi
-# TODO: Add any other frontend instructions here
-npm install
-npm start &
+# if [[ $TRAVIS_REPO_SLUG == $FRONTEND_REPO_SLUG ]]; then
+#   cd $TRAVIS_BUILD_DIR
+# else
+#   echo "Cloning frontend repo ($FRONTEND_REPO_URL)..."
+#   git clone $FRONTEND_REPO_URL ~/frontend
+#   cd ~/frontend
+# fi
+# echo 'Setting up frontend app...'
+# # TODO: Add any other frontend instructions here
+# npm install
+# npm start &
+# echo 'Done setting up frontend app.'
 
 ###########################################################
 # QA
@@ -49,8 +62,8 @@ else
   cd ~/qa
 fi
 bundle install
-export DISPLAY=:99.0
-sh -e /etc/init.d/xvfb start
-sleep 3 # give xvfb some time to start
+# export DISPLAY=:99.0
+# sh -e /etc/init.d/xvfb start
+# sleep 3 # give xvfb some time to start
 
 cd $TRAVIS_BUILD_DIR

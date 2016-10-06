@@ -8,7 +8,7 @@ module UserHelper
       user: {
         email: "",
         password: ""
-      },
+      }
     }
 
     users[type]

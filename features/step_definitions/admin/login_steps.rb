@@ -1,5 +1,5 @@
 Given(/^I have an admin account$/) do
-  @user_info = get_user_info(:admin)
+  @admin_info = get_user_info(:admin)
 end
 
 Given(/^I am at the admin log in page$/) do

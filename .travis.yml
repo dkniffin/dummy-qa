@@ -1,8 +1,12 @@
 language: ruby
-cache: bundler
+cache:
+  - /home/travis/.rvm/gems
+  - $TRAVIS_BUILD_DIR/vendor/bundle
 
 before_script:
-  - bash <(curl -s https://raw.githubusercontent.com/dkniffin/dummy-qa/master/bin/before-test.sh)
+  - curl https://raw.githubusercontent.com/dkniffin/dummy-qa/master/bin/before-test.sh -o /tmp/before-test.sh
+  - bash /tmp/before-test.sh
 
 script:
-  - bash <(curl -s https://raw.githubusercontent.com/dkniffin/dummy-qa/master/bin/test.sh)
+  - curl -s https://raw.githubusercontent.com/dkniffin/dummy-qa/master/bin/test.sh -o /tmp/test.sh
+  - bash /tmp/test.sh
