@@ -22,7 +22,7 @@ else
   cd ~/backend
 fi
 bundle install
-rails s &
+bundle exec rails s &
 
 ###########################################################
 # Frontend
