@@ -48,6 +48,7 @@ echo 'Setting up frontend app...'
 # TODO: Add any other frontend instructions here
 npm install
 npm start &
+sleep 20
 echo 'Done setting up frontend app.'
 
 ###########################################################
