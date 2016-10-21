@@ -1,4 +1,4 @@
 Feature: Dummy
   Scenario: Dummy
     When I visit "/"
-    Then I see "Hello World"
+    Then I see "Hello, Joe"

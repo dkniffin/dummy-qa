@@ -37,18 +37,18 @@ bundle exec bin/rails s > /dev/null 2>&1 &
 # Frontend
 
 # TEMPLATE_TODO: Pair with a frontender to create a basic hello world app to test this.
-# if [[ $TRAVIS_REPO_SLUG == $FRONTEND_REPO_SLUG ]]; then
-#   cd $TRAVIS_BUILD_DIR
-# else
-#   echo "Cloning frontend repo ($FRONTEND_REPO_URL)..."
-#   git clone $FRONTEND_REPO_URL ~/frontend
-#   cd ~/frontend
-# fi
-# echo 'Setting up frontend app...'
-# # TODO: Add any other frontend instructions here
-# npm install
-# npm start &
-# echo 'Done setting up frontend app.'
+if [[ $TRAVIS_REPO_SLUG == $FRONTEND_REPO_SLUG ]]; then
+  cd $TRAVIS_BUILD_DIR
+else
+  echo "Cloning frontend repo ($FRONTEND_REPO_URL)..."
+  git clone $FRONTEND_REPO_URL ~/frontend
+  cd ~/frontend
+fi
+echo 'Setting up frontend app...'
+# TODO: Add any other frontend instructions here
+npm install
+npm start &
+echo 'Done setting up frontend app.'
 
 ###########################################################
 # QA

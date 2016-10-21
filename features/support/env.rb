@@ -6,9 +6,9 @@ require_relative "helpers/endpoint_helper"
 require_relative "helpers/user_helper"
 
 Capybara.configure do |config|
-  config.app_host = 'http://localhost:3000' #EndpointHelper.app_base
+  config.app_host = 'http://localhost:8080' #EndpointHelper.app_base
   config.server_host = 'localhost'
-  config.server_port = '3000'
+  config.server_port = '8080'
   config.default_driver = :webkit
   config.run_server = false
 end
