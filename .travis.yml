@@ -1,7 +1,8 @@
 language: ruby
 cache:
-  - /home/travis/.rvm/gems
-  - $TRAVIS_BUILD_DIR/vendor/bundle
+  - $BUNDLE_PATH
+  - ~/frontend/node_modules
+  - $TRAVIS_BUILD_DIR/node_modules
 
 before_script:
   - curl https://raw.githubusercontent.com/dkniffin/dummy-qa/master/bin/before-test.sh -o /tmp/before-test.sh
