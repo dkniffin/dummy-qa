@@ -1,4 +1,6 @@
 language: ruby
+node_js:
+  - '6'
 cache:
   - ~/.travis-bundler-gems
   - ~/frontend/node_modules
