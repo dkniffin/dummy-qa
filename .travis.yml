@@ -1,8 +1,5 @@
 language: ruby
 
-env:
-  - TRAVIS_NODE_VERSION="6"
-
 cache:
   - ~/.travis-bundler-gems
   - ~/frontend/node_modules
