@@ -3,5 +3,6 @@ When(%r{^I visit "/"$}) do
 end
 
 When(/^I click "(.*?)"$/) do |item|
+  puts page.body
   click_on(item)
 end
