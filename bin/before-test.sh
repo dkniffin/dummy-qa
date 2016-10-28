@@ -48,7 +48,6 @@ else
 fi
 echo 'Setting up frontend app...'
 # TODO: Add any other frontend instructions here
-npm cache clean
 npm install
 npm start &
 sleep 20
