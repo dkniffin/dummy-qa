@@ -16,8 +16,7 @@ QA_REPO_URL=$REPO_URL_PREFIX$QA_REPO_SLUG$REPO_URL_SUFFIX
 # Travis sets this, and it messes with bundler. We'll just unset it
 unset BUNDLE_GEMFILE
 
-echo $BUNDLE_PATH
-
+export BUNDLE_PATH="~/.travis-bundler-gems"
 
 ###########################################################
 # Backend

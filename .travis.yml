@@ -1,6 +1,6 @@
 language: ruby
 cache:
-  - $BUNDLE_PATH
+  - ~/.travis-bundler-gems
   - ~/frontend/node_modules
   - $TRAVIS_BUILD_DIR/node_modules
 
