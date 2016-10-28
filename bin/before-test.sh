@@ -48,6 +48,7 @@ else
 fi
 echo 'Setting up frontend app...'
 # TODO: Add any other frontend instructions here
+rm /home/travis/.npm/c8895d09-babel-runtime-6-18-0-package-tgz.lock
 npm install
 npm start &
 sleep 20
