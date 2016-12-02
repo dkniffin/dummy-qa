@@ -54,8 +54,11 @@ rm -rf ~/.nvm &&
   source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
 
 npm install
-npm start &
-sleep 20
+npm start > /tmp/fe.log &
+# Wait for frontend server to start up
+while ! grep -m1 'webpack: bundle is now VALID.' < /tmp/fe.log; do
+    sleep 1
+done
 echo 'Done setting up frontend app.'
 
 ###########################################################

@@ -2,7 +2,6 @@ require "capybara/cucumber"
 require "capybara-webkit"
 require 'capybara-screenshot'
 require "net/http"
-require_relative "helpers/endpoint_helper"
 require_relative "helpers/user_helper"
 
 Capybara.configure do |config|
