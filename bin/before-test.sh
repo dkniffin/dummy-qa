@@ -48,10 +48,8 @@ else
 fi
 echo 'Setting up frontend app...'
 # TODO: Add any other frontend instructions here
-rm -rf ~/.nvm &&
-  git clone https://github.com/creationix/nvm.git ~/.nvm &&
-  (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) &&
-  source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+curl -sL https://deb.nodesource.com/setup_$TRAVIS_NODE_VERSION.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 npm install
 npm start > /tmp/fe.log &
