@@ -1,0 +1,14 @@
+version: '2'
+services:
+  qa:
+    build: .
+    volumes:
+      - .:/dummy-qa
+    external_links:
+      - dummyfrontend_web_1
+      - dummybackend_api_1
+
+networks:
+  default:
+    external:
+      name: "dummy-network"

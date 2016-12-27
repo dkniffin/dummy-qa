@@ -13,51 +13,42 @@ BACKEND_REPO_URL=$REPO_URL_PREFIX$BACKEND_REPO_SLUG$REPO_URL_SUFFIX
 FRONTEND_REPO_URL=$REPO_URL_PREFIX$FRONTEND_REPO_SLUG$REPO_URL_SUFFIXB
 QA_REPO_URL=$REPO_URL_PREFIX$QA_REPO_SLUG$REPO_URL_SUFFIX
 
-# Travis sets this, and it messes with bundler. We'll just unset it
-unset BUNDLE_GEMFILE
+docker network create dummy-network
 
-export BUNDLE_PATH="~/.travis-bundler-gems"
+WAITFORIT=/tmp/waitforit.sh
+wget https://github.com/maxcnunes/waitforit/releases/download/v1.4.0/waitforit-linux_amd64 -O $WAITFORIT
+chmod a+x $WAITFORIT
 
 ###########################################################
 # Backend
 
 if [[ $TRAVIS_REPO_SLUG == $BACKEND_REPO_SLUG ]]; then
+  export BE_PATH=$TRAVIS_BUILD_DIR
   cd $TRAVIS_BUILD_DIR
 else
-  git clone $BACKEND_REPO_URL ~/backend
-  cd ~/backend
+  export BE_PATH="$HOME/backend"
+  git clone $BACKEND_REPO_URL $BE_PATH
+  cd $BE_PATH
 fi
-bundle install
-cp config/secrets.example.yml config/secrets.yml
-cp config/database.example.yml config/database.yml
-psql -c 'create database dummy_backend_test;' -U postgres
-bundle exec rake db:migrate --trace
-bundle exec rake test:prepare --trace
-bundle exec bin/rails s > /dev/null 2>&1 &
+
+docker-compose up -d
+$WAITFORIT -full-connection=http://localhost:3000
+curl http://localhost:3000
 
 ###########################################################
 # Frontend
 
-# TEMPLATE_TODO: Pair with a frontender to create a basic hello world app to test this.
 if [[ $TRAVIS_REPO_SLUG == $FRONTEND_REPO_SLUG ]]; then
+  export FE_PATH=$TRAVIS_BUILD_DIR
   cd $TRAVIS_BUILD_DIR
 else
-  echo "Cloning frontend repo ($FRONTEND_REPO_URL)..."
-  git clone $FRONTEND_REPO_URL ~/frontend
-  cd ~/frontend
+  export FE_PATH="$HOME/frontend"
+  git clone $FRONTEND_REPO_URL $FE_PATH
+  cd $FE_PATH
 fi
-echo 'Setting up frontend app...'
-# TODO: Add any other frontend instructions here
-curl -sL https://deb.nodesource.com/setup_$TRAVIS_NODE_VERSION.x | sudo -E bash -
-sudo apt-get install -y nodejs
 
-npm install
-npm start > /tmp/fe.log &
-# Wait for frontend server to start up
-while ! grep -m1 'webpack: bundle is now VALID.' < /tmp/fe.log; do
-    sleep 1
-done
-echo 'Done setting up frontend app.'
+docker-compose up -d
+$WAITFORIT -full-connection=http://localhost:8080
 
 ###########################################################
 # QA
@@ -66,13 +57,11 @@ if [[ $TRAVIS_REPO_SLUG == $QA_REPO_SLUG ]]; then
   export QA_PATH=$TRAVIS_BUILD_DIR
   cd $TRAVIS_BUILD_DIR
 else
-  export QA_PATH="~/qa"
-  git clone $QA_REPO_URL ~/qa
-  cd ~/qa
+  export QA_PATH="$HOME/qa"
+  git clone $QA_REPO_URL $QA_PATH
+  cd $QA_PATH
 fi
-bundle install
-# export DISPLAY=:99.0
-# sh -e /etc/init.d/xvfb start
-# sleep 3 # give xvfb some time to start
+
+docker-compose up -d
 
 cd $TRAVIS_BUILD_DIR
